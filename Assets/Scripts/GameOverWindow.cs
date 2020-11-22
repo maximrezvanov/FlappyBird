@@ -12,19 +12,14 @@ public class GameOverWindow : MonoBehaviour
 
     private void Awake()
     {
-        Hide();
-
-    }
-
-    private void Start()
-    {
-        scoreTextGO.text = null;
+        scoreTextGO.text = score.scoreCount.ToString();
+        //Hide();
 
     }
     private void Update()
     {
         scoreTextGO.text = score.scoreText.text;
-            }
+    }
 
     public void Hide()
     {
@@ -36,11 +31,6 @@ public class GameOverWindow : MonoBehaviour
         gameObject.SetActive(transform);
     }
 
-    //public void BirdDied(Player player)
-    //{
-    //    scoreTextGO.text = score.scoreText.text;
 
 
-    //}
-  
 }

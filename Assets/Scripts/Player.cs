@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D rbb;
     public float force;
     public GameObject gameOverWindow;
+    private Animator animator;
+    private string currentAnimation;
 
 
     enum State { Playing, Dead };
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rbb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         state = State.Playing;
 
     }
@@ -60,14 +63,26 @@ public class Player : MonoBehaviour
         Invoke("GamePause", 3f);
         force = 0;
         gameOverWindow.SetActive(true);
+        ChangeAnimation("Hurt");
+        Invoke("PlayDeathAnimation", 1.5f);
+
     }
 
-    void LoadFirstLevel()
+    private void PlayDeathAnimation()
     {
-        SceneManager.LoadScene(0);
+        animator.SetTrigger("Death");
     }
 
-  
+    
+
+  public void ChangeAnimation(string animation)
+    {
+        if (animation == currentAnimation) return;
+        
+            animator.Play(animation);
+            currentAnimation = animation;
+        
+    }
 
     public void GamePause()
     {

@@ -8,14 +8,11 @@ public class BlockSpawner : MonoBehaviour
     public float period = 1f;
     private float preTime = 0f;
     [SerializeField] GameObject block;
-    [SerializeField] GameObject block1;
+    public GameObject block1;
     [SerializeField] GameObject block2;
 
 
-    [SerializeField] float speedRespawn;
-
-   
-
+    [SerializeField] float speedRespawn = 0f;
 
 
     void Start()
@@ -34,20 +31,21 @@ public class BlockSpawner : MonoBehaviour
     {
         if (Time.time - preTime >= period)
         {
-            GameObject newBlock = Instantiate(block, transform);
-            newBlock.GetComponent<Block>().speed = speedRespawn;
+            Spawn(block);
+            Spawn(block1);
+            Spawn(block2);
 
-            GameObject newBlock1 = Instantiate(block1, transform);
-            newBlock1.GetComponent<Block>().speed = speedRespawn;
-
-            GameObject newBlock2 = Instantiate(block2, transform);
-            newBlock2.GetComponent<Block>().speed = speedRespawn;
 
             preTime = Time.time;
-            Destroy(newBlock, 10);
         }
     }
-    
+
+    private void Spawn(GameObject gameObject)
+    {
+        gameObject = Instantiate(gameObject, transform);
+        gameObject.GetComponent<Block>().speed = speedRespawn;
+        Destroy(gameObject, 12);
+    }
 
    
    

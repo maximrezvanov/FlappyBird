@@ -6,41 +6,39 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
-    public Rigidbody2D rbb;
-    public float force;
+    private Rigidbody2D rb;
+    public float upForce;
     public GameObject gameOverWindow;
     private Animator animator;
     private string currentAnimation;
 
 
-    enum State { Playing, Dead };
+    private bool isDead = false;
 
-    State state = State.Playing;
 
 
 
     void Start()
     {
-        rbb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        state = State.Playing;
-
     }
 
 
 
     void Update()
     {
-        Control();
-    }
-
-    void Control()
-    {
-        if (Input.GetKey(KeyCode.Space))
+        if (isDead == false)
         {
-            rbb.AddForce(Vector2.up * force * Time.deltaTime, ForceMode2D.Impulse);
+            if (Input.GetMouseButtonUp(0))
+            {
+                rb.velocity = Vector2.zero;
+                rb.AddForce(new Vector2(0, upForce));
+            }
         }
     }
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -59,12 +57,14 @@ public class Player : MonoBehaviour
 
    public void Lose()
     {
-        state = State.Dead;
-        Invoke("GamePause", 3f);
-        force = 0;
+        isDead = true;
+        rb.velocity = Vector2.zero;
+        //Invoke("GamePause", 1f);
+        rb.velocity = Vector2.zero;
         gameOverWindow.SetActive(true);
         ChangeAnimation("Hurt");
-        Invoke("PlayDeathAnimation", 1.5f);
+        Invoke("PlayDeathAnimation", 1f);
+        
 
     }
 

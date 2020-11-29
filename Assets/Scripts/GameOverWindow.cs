@@ -13,7 +13,6 @@ public class GameOverWindow : MonoBehaviour
     private void Awake()
     {
         scoreTextGO.text = score.scoreCount.ToString();
-        //Hide();
 
     }
     private void Update()

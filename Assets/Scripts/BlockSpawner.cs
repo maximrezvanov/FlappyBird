@@ -7,12 +7,13 @@ public class BlockSpawner : MonoBehaviour
 {
     public float period = 1f;
     private float preTime = 0f;
-    [SerializeField] GameObject block;
+    public GameObject block;
     public GameObject block1;
-    [SerializeField] GameObject block2;
+    public GameObject block2;
 
 
     [SerializeField] float speedRespawn = 0f;
+
 
 
     void Start()

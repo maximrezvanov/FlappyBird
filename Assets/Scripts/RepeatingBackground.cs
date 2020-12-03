@@ -7,7 +7,7 @@ public class RepeatingBackground : MonoBehaviour
 
     private SpriteRenderer sprite;
     private BoxCollider2D bgCollider;
-    private float scrollSpeed = 1.5f;
+    private float scrollSpeed = 0.75f;
     private float groundHorizontalLength;
     private Rigidbody2D rb;
     public GameObject GoCollider;

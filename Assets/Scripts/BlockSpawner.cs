@@ -45,7 +45,7 @@ public class BlockSpawner : MonoBehaviour
     {
         gameObject = Instantiate(gameObject, transform);
         gameObject.GetComponent<Block>().speed = speedRespawn;
-        Destroy(gameObject, 12);
+        Destroy(gameObject, 20);
     }
 
    

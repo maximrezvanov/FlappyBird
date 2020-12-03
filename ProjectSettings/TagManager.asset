@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Score
   - Block
+  - DownBlock
   layers:
   - Default
   - TransparentFX

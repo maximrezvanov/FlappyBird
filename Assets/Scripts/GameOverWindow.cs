@@ -20,16 +20,7 @@ public class GameOverWindow : MonoBehaviour
         scoreTextGO.text = score.scoreText.text;
     }
 
-    public void Hide()
-    {
-        gameObject.SetActive(false);
-    }
-
-    public void Show()
-    {
-        gameObject.SetActive(transform);
-    }
-
+    
 
 
 }

@@ -11,9 +11,11 @@ public class Player : MonoBehaviour
     public GameObject gameOverWindow;
     private Animator animator;
     private string currentAnimation;
+    private bool isDead;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip fallClip;
+    [SerializeField] private AudioClip hitClip;
 
-
-    private bool isDead = false;
 
 
 
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -49,6 +52,7 @@ public class Player : MonoBehaviour
             case "Score":
                 break;
             default:
+                audioSource.PlayOneShot(hitClip);
                 Lose();
                 break;
 
@@ -59,11 +63,12 @@ public class Player : MonoBehaviour
     {
         isDead = true;
         rb.velocity = Vector2.zero;
-        //Invoke("GamePause", 1f);
+        Invoke("GamePause", 1f);
         rb.velocity = Vector2.zero;
         gameOverWindow.SetActive(true);
         ChangeAnimation("Hurt");
         Invoke("PlayDeathAnimation", 1f);
+
         
 
     }
@@ -71,11 +76,13 @@ public class Player : MonoBehaviour
     private void PlayDeathAnimation()
     {
         animator.SetTrigger("Death");
+        audioSource.PlayOneShot(fallClip);
+
     }
 
-    
 
-  public void ChangeAnimation(string animation)
+
+    public void ChangeAnimation(string animation)
     {
         if (animation == currentAnimation) return;
         

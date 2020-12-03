@@ -14,7 +14,6 @@ public class BonusSpawner : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         SpawnBonus();

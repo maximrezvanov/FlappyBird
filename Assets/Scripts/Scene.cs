@@ -13,9 +13,12 @@ public class Scene : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
+#if UNITY_ANDROID || UNITY_EDITOR
 
     public void CloseApp()
     {
         Application.Quit();
     }
+#endif
+
 }
